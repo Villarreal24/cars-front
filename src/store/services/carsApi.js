@@ -9,6 +9,18 @@ export const carsApi = createApi({
     baseUrl: process.env.NEXT_PUBLIC_API_URL
   }),
   endpoints: (builder) => ({
+    postRegisterUser: builder.mutation({
+      query: (body) => {
+        const url = '/auth/register'
+        return { url, method: "POST", body }
+      }
+    }),
+    postLogin: builder.mutation({
+      query: (body) => {
+        const url = '/auth/login'
+        return { url, method: "POST", body }
+      }
+    }),
     postNewCar: builder.mutation({
       query: (body) => {
         const url = '/cars'
@@ -31,6 +43,8 @@ export const carsApi = createApi({
 });
 
 export const {
+    usePostRegisterUserMutation,
+    usePostLoginMutation,
     usePostNewCarMutation,
     useGetCarsQuery,
     useGetSpecificationsQuery

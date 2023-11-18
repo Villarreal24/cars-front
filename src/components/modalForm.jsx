@@ -77,7 +77,7 @@ function ModalForm({ isOpen, onClose }) {
         }
 
         postNewCar(object).then(resp => {
-            console.log(resp)
+            // console.log(resp)
             if (resp.data) {
                 console.log("Agregado exitosamente");
                 onClose();
@@ -90,7 +90,6 @@ function ModalForm({ isOpen, onClose }) {
                     isClosable: true,
                 })
             } else {
-                console.log("Valio barriga")
                 toast({
                     title: 'Failed, try again.',
                     status: 'error',

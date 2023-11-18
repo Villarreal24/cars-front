@@ -36,12 +36,14 @@ import { setIdSeleted, setRefresh } from '@/store/adminSlice';
 function Admin() {
     const dispatch = useDispatch();
     const refresh = useSelector(state => state.admin.refresh);
-    // FIRST INSTANCE OF MODAL FORM
+
+    // ==== INSTANCE OF MODAL FORM ====
     const {
         isOpen: isOpenForm,
         onOpen: onOpenForm,
         onClose: onCloseForm
     } = useDisclosure();
+    // ==== INSTANCE OF MODAL DETAILS ====
     const {
         isOpen: isOpenDetails,
         onOpen: onOpenDetails,
@@ -49,6 +51,7 @@ function Admin() {
     } = useDisclosure();
     const { data, isError, isLoading, refetch } = useGetCarsQuery();
 
+    // ==== USE EFFECT TO REFRESH DATA AFTER ADD NEW REGISTRY =====
     useEffect(() => {
         if (refresh) {
             refetch();
@@ -79,8 +82,8 @@ function Admin() {
         return payload + ' USD'
     }
 
+    // ==== FUNCTION TO OPEN MODAL DETAILS AND SEND ID SELECTED ====
     const handleDetails = (id) => {
-        console.log(id)
         dispatch(setIdSeleted(id))
         onOpenDetails()
     }
@@ -171,6 +174,7 @@ function Admin() {
                             </Table>
                         </TableContainer>
                     </Show>
+
                     {/* ==== DATA OF CARS FOR MOBILE ==== */}
                     <Show below='md'>
                         <Accordion allowToggle>
